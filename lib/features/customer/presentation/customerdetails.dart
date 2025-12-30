@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:customer_ui/core/constant/app_color.dart';
 import 'package:customer_ui/core/constant/customer_drop.dart';
 import 'package:customer_ui/core/constant/language.dart';
 import 'package:customer_ui/core/constant/payment.dart';
@@ -107,216 +108,216 @@ class _CustomerdetailsState extends State<Customerdetails> {
         title: 'Customer Details',
         notification: Image.asset('assets/images/bell.png'),
       ),
-      body: Container(
-        width: double.infinity,
-        margin: const EdgeInsets.only(bottom: 12),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.white,
+      backgroundColor: AppColor.backgroundColor,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 18),
+        child: Container(
+          width: double.infinity,
+          margin: const EdgeInsets.only(bottom: 12),
+          padding: const EdgeInsets.all(12),
+          // decoration: BoxDecoration(color: Colors.white),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SectionCard(
+                  title: 'Basic Info ',
+                  children: [
+                    if (isEditMode) ...[
+                      CustomTextField(
+                        controller: nameController,
+                        hintText: 'Enter Customer Name',
+                        labelText: 'Customer Name',
+                        keyboardType: TextInputType.text,
+                      ),
+                      const SizedBox(height: 12),
+                      CustomTextField(
+                        controller: emailController,
+                        hintText: 'Enter email',
+                        labelText: 'Email',
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                      const SizedBox(height: 12),
+                      CustomTextField(
+                        controller: phoneController,
+                        hintText: 'Enter Customer Phone Number',
+                        labelText: 'Customer Phone Number',
+                        keyboardType: TextInputType.phone,
+                      ),
+                    ] else ...[
+                      DisplayRowWidget(
+                        label: 'Full Name',
+                        value: customerData['full_name'] ?? 'N/A',
+                      ),
+                      const SizedBox(height: 12),
+                      DisplayRowWidget(
+                        label: 'Email',
+                        value: customerData['email'] ?? 'N/A',
+                      ),
+                      const SizedBox(height: 12),
+                      DisplayRowWidget(
+                        label: 'Phone',
+                        value: customerData['phone'] ?? 'N/A',
+                      ),
+                    ],
+                    const SizedBox(height: 8),
 
-          border: Border.all(color: Colors.grey.shade200),
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SectionCard(
-                title: 'Basic Info ',
-                children: [
-                  if (isEditMode) ...[
-                    CustomTextField(
-                      controller: nameController,
-                      hintText: 'Enter Customer Name',
-                      labelText: 'Customer Name',
-                      keyboardType: TextInputType.text,
-                    ),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      controller: emailController,
-                      hintText: 'Enter email',
-                      labelText: 'Email',
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      controller: phoneController,
-                      hintText: 'Enter Customer Phone Number',
-                      labelText: 'Customer Phone Number',
-                      keyboardType: TextInputType.phone,
-                    ),
-                  ] else ...[
                     DisplayRowWidget(
-                      label: 'Full Name',
-                      value: customerData['full_name'] ?? 'N/A',
+                      label: 'Loyalty Points',
+                      value: '${customerData['loyalty_points'] ?? 0} points',
                     ),
-                    const SizedBox(height: 12),
-                    DisplayRowWidget(
-                      label: 'Email',
-                      value: customerData['email'] ?? 'N/A',
-                    ),
-                    const SizedBox(height: 12),
-                    DisplayRowWidget(
-                      label: 'Phone',
-                      value: customerData['phone'] ?? 'N/A',
+                    Text(
+                      isActive ? 'Active' : 'Inactive',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
-                  const SizedBox(height: 8),
-
-                  DisplayRowWidget(
-                    label: 'Loyalty Points',
-                    value: '${customerData['loyalty_points'] ?? 0} points',
-                  ),
-                  Text(
-                    isActive ? 'Active' : 'Inactive',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              SectionCard(
-                title: 'Address Info',
-                children: [
-                  if (isEditMode) ...[
-                    CustomTextField(
-                      controller: addressLineController,
-                      hintText: 'Enter Address Line',
-                      labelText: 'Address Line',
-                      keyboardType: TextInputType.text,
-                    ),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      controller: wardController,
-                      hintText: 'Enter Ward Number',
-                      labelText: 'Ward No',
-                      keyboardType: TextInputType.number,
-                    ),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      controller: municipalityController,
-                      hintText: 'Enter Municipality',
-                      labelText: 'Municipality',
-                      keyboardType: TextInputType.text,
-                    ),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      controller: districtController,
-                      hintText: 'Enter District',
-                      labelText: 'District',
-                      keyboardType: TextInputType.text,
-                    ),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      controller: provinceController,
-                      hintText: 'Enter Province',
-                      labelText: 'Province',
-                      keyboardType: TextInputType.text,
-                    ),
-                  ] else ...[
-                    DisplayRowWidget(
-                      label: 'Address Line',
-                      value: customerData['address']['address_line'] ?? 'N/A',
-                    ),
-                    const SizedBox(height: 12),
-                    DisplayRowWidget(
-                      label: 'Ward No',
-                      value:
-                          customerData['address']['ward']?.toString() ??
-                          'Not specified',
-                    ),
-                    const SizedBox(height: 12),
-                    DisplayRowWidget(
-                      label: 'Municipality',
-                      value: customerData['address']['municipality'] ?? 'N/A',
-                    ),
-                    const SizedBox(height: 12),
-                    DisplayRowWidget(
-                      label: 'District',
-                      value: customerData['address']['district'] ?? 'N/A',
-                    ),
-                    const SizedBox(height: 12),
-                    DisplayRowWidget(
-                      label: 'Province',
-                      value: customerData['address']['province'] ?? 'N/A',
-                    ),
-                  ],
-                ],
-              ),
-              SectionCard(
-                title: 'Preferences & Loyalty',
-                children: [
-                  if (isEditMode) ...[
-                    CustomDropdown(
-                      hint: 'Select payment method',
-                      items: paymentMethods,
-                      onChanged: (val) {
-                        setState(() {
-                          selectedPayment = val;
-                        });
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    CustomDropdown(
-                      hint: 'Select language',
-                      items: nepaliLanguages,
-                      onChanged: (val) {
-                        setState(() {
-                          selectedLanguage = val;
-                        });
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    CustomDropdown(
-                      hint: 'Select category',
-                      items: customerCategories,
-                      onChanged: (val) {
-                        setState(() {
-                          selectedCategory = val;
-                        });
-                      },
-                    ),
-                  ] else ...[
-                    DisplayRowWidget(
-                      label: 'Preferred Language',
-                      value: customerData['preferences']['language'] ?? 'N/A',
-                    ),
-                    const SizedBox(height: 12),
-                    DisplayRowWidget(
-                      label: 'Preferred Payment',
-                      value: customerData['preferences']['payment'] ?? 'N/A',
-                    ),
-                    const SizedBox(height: 12),
-                    DisplayRowWidget(
-                      label: 'Category',
-                      value: customerData['preferences']['category'] ?? 'N/A',
-                    ),
-                  ],
-                ],
-              ),
-              if (isEditMode) ...[
-                CustomButton(
-                  text: 'Save',
-                  iconPath: 'assets/images/addcustomer.png',
-                  onPressed: () {
-                    saveChanges();
-                    setState(() {
-                      isEditMode = false;
-                    });
-                  },
                 ),
-              ] else ...[
-                CustomButton(
-                  text: 'Edit',
-                  iconPath: 'assets/images/addcustomer.png',
-                  onPressed: () {
-                    setState(() {
-                      isEditMode = true;
-                    });
-                  },
+                SectionCard(
+                  title: 'Address Info',
+                  children: [
+                    if (isEditMode) ...[
+                      CustomTextField(
+                        controller: addressLineController,
+                        hintText: 'Enter Address Line',
+                        labelText: 'Address Line',
+                        keyboardType: TextInputType.text,
+                      ),
+                      const SizedBox(height: 12),
+                      CustomTextField(
+                        controller: wardController,
+                        hintText: 'Enter Ward Number',
+                        labelText: 'Ward No',
+                        keyboardType: TextInputType.number,
+                      ),
+                      const SizedBox(height: 12),
+                      CustomTextField(
+                        controller: municipalityController,
+                        hintText: 'Enter Municipality',
+                        labelText: 'Municipality',
+                        keyboardType: TextInputType.text,
+                      ),
+                      const SizedBox(height: 12),
+                      CustomTextField(
+                        controller: districtController,
+                        hintText: 'Enter District',
+                        labelText: 'District',
+                        keyboardType: TextInputType.text,
+                      ),
+                      const SizedBox(height: 12),
+                      CustomTextField(
+                        controller: provinceController,
+                        hintText: 'Enter Province',
+                        labelText: 'Province',
+                        keyboardType: TextInputType.text,
+                      ),
+                    ] else ...[
+                      DisplayRowWidget(
+                        label: 'Address Line',
+                        value: customerData['address']['address_line'] ?? 'N/A',
+                      ),
+                      const SizedBox(height: 12),
+                      DisplayRowWidget(
+                        label: 'Ward No',
+                        value:
+                            customerData['address']['ward']?.toString() ??
+                            'Not specified',
+                      ),
+                      const SizedBox(height: 12),
+                      DisplayRowWidget(
+                        label: 'Municipality',
+                        value: customerData['address']['municipality'] ?? 'N/A',
+                      ),
+                      const SizedBox(height: 12),
+                      DisplayRowWidget(
+                        label: 'District',
+                        value: customerData['address']['district'] ?? 'N/A',
+                      ),
+                      const SizedBox(height: 12),
+                      DisplayRowWidget(
+                        label: 'Province',
+                        value: customerData['address']['province'] ?? 'N/A',
+                      ),
+                    ],
+                  ],
                 ),
+                SectionCard(
+                  title: 'Preferences & Loyalty',
+                  children: [
+                    if (isEditMode) ...[
+                      CustomDropdown(
+                        hint: 'Select payment method',
+                        items: paymentMethods,
+                        onChanged: (val) {
+                          setState(() {
+                            selectedPayment = val;
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      CustomDropdown(
+                        hint: 'Select language',
+                        items: nepaliLanguages,
+                        onChanged: (val) {
+                          setState(() {
+                            selectedLanguage = val;
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      CustomDropdown(
+                        hint: 'Select category',
+                        items: customerCategories,
+                        onChanged: (val) {
+                          setState(() {
+                            selectedCategory = val;
+                          });
+                        },
+                      ),
+                    ] else ...[
+                      DisplayRowWidget(
+                        label: 'Preferred Language',
+                        value: customerData['preferences']['language'] ?? 'N/A',
+                      ),
+                      const SizedBox(height: 12),
+                      DisplayRowWidget(
+                        label: 'Preferred Payment',
+                        value: customerData['preferences']['payment'] ?? 'N/A',
+                      ),
+                      const SizedBox(height: 12),
+                      DisplayRowWidget(
+                        label: 'Category',
+                        value: customerData['preferences']['category'] ?? 'N/A',
+                      ),
+                    ],
+                  ],
+                ),
+                if (isEditMode) ...[
+                  CustomButton(
+                    text: 'Save',
+                    iconPath: 'assets/images/addcustomer.png',
+                    onPressed: () {
+                      saveChanges();
+                      setState(() {
+                        isEditMode = false;
+                      });
+                    },
+                  ),
+                ] else ...[
+                  CustomButton(
+                    text: 'Edit',
+                    iconPath: 'assets/images/addcustomer.png',
+                    onPressed: () {
+                      setState(() {
+                        isEditMode = true;
+                      });
+                    },
+                  ),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ),

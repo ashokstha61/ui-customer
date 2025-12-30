@@ -1,4 +1,3 @@
-// import 'package:beamer/beamer.dart';
 import 'package:customer_ui/core/constant/app_color.dart';
 import 'package:customer_ui/core/constant/data.dart';
 import 'package:customer_ui/core/widgets/custom_appbar.dart';
@@ -34,7 +33,7 @@ class _CustomerState extends ConsumerState<Customer> {
       ),
       backgroundColor: AppColor.backgroundColor,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
+        padding: EdgeInsets.symmetric(horizontal: 18),
         child: Column(
           children: [
             SizedBox(height: 8),

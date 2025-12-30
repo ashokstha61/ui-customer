@@ -49,19 +49,16 @@ class _CustomerdetailsState extends State<Customerdetails> {
   late TextEditingController provinceController;
   late TextEditingController addressLineController;
 
-  // Dropdown values
   String? selectedPayment;
   String? selectedLanguage;
   String? selectedCategory;
 
-  // Edit mode state
   bool isEditMode = false;
 
   @override
   void initState() {
     super.initState();
 
-    // Initialize controllers with customer data
     final address = customerData['address'] as Map<String, dynamic>;
     final preferences = customerData['preferences'] as Map<String, dynamic>;
 
@@ -263,7 +260,6 @@ class _CustomerdetailsState extends State<Customerdetails> {
                     CustomDropdown(
                       hint: 'Select language',
                       items: nepaliLanguages,
-
                       onChanged: (val) {
                         setState(() {
                           selectedLanguage = val;
@@ -298,16 +294,28 @@ class _CustomerdetailsState extends State<Customerdetails> {
                   ],
                 ],
               ),
-              CustomButton(
-                text: 'Save',
-                iconPath: 'assets/images/addcustomer.png',
-                onPressed: () {
-                  saveChanges();
-                  setState(() {
-                    isEditMode = false;
-                  });
-                },
-              ),
+              if (isEditMode) ...[
+                CustomButton(
+                  text: 'Save',
+                  iconPath: 'assets/images/addcustomer.png',
+                  onPressed: () {
+                    saveChanges();
+                    setState(() {
+                      isEditMode = false;
+                    });
+                  },
+                ),
+              ] else ...[
+                CustomButton(
+                  text: 'Edit',
+                  iconPath: 'assets/images/addcustomer.png',
+                  onPressed: () {
+                    setState(() {
+                      isEditMode = true;
+                    });
+                  },
+                ),
+              ],
             ],
           ),
         ),
@@ -316,7 +324,6 @@ class _CustomerdetailsState extends State<Customerdetails> {
   }
 
   void saveChanges() {
-    // Here you would typically save to your database or update state
     final updatedCustomer = {
       ...customerData,
       "full_name": nameController.text,

@@ -1,0 +1,18 @@
+final List<String> nepaliLanguages = [
+  'Nepali',
+  'Maithili',
+  'Bhojpuri',
+  'Tharu',
+  'Tamang',
+  'Newari (Nepal Bhasa)',
+  'Magar',
+  'Awadhi',
+  'Rai',
+  'Limbu',
+  'Gurung',
+  'Sherpa',
+  'Tamang',
+  'Hindi',
+  'Urdu',
+  'English',
+];

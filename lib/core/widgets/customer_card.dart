@@ -76,7 +76,7 @@ class CustomerCard extends StatelessWidget {
                   label: 'Phone',
                   value: data['phone']!,
                   label1: 'Status',
-                  value1: data['status'] ?? 'n/a',
+                  value1: data['status'] ?? 'N/A',
                 ),
               ],
             ),
@@ -84,7 +84,7 @@ class CustomerCard extends StatelessWidget {
             Row(
               children: [
                 InfoCard(
-                  label: 'Loyanty point',
+                  label: 'Loyalty point',
                   value: data['loyalty_point']!,
                   label1: 'Last Date Purchase',
                   value1: data['purchase date'] ?? 'N/A',
@@ -100,7 +100,9 @@ class CustomerCard extends StatelessWidget {
                   child: CustomButton(
                     text: 'Create Order',
                     iconPath: 'assets/images/cart.png',
-                    onPressed: () {},
+                    onPressed: () {
+                      Beamer.of(context).beamToNamed('/customer/summary');
+                    },
                     buttonType: ButtonType.elevated,
                   ),
                 ),
@@ -110,7 +112,9 @@ class CustomerCard extends StatelessWidget {
                     text: 'View',
                     iconPath: 'assets/images/eye.png',
                     onPressed: () {
-                      Beamer.of(context).beamToNamed('/customer/details',data:data);
+                      Beamer.of(
+                        context,
+                      ).beamToNamed('/customer/details', data: data);
                     },
                     buttonType: ButtonType.outlined,
                   ),

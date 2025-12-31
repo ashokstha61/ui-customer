@@ -2,6 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:customer_ui/features/customer/presentation/card.dart';
 import 'package:customer_ui/features/customer/presentation/customer.dart';
 import 'package:customer_ui/features/customer/presentation/customerdetails.dart';
+import 'package:customer_ui/features/customer/presentation/ordersummary.dart';
 import 'package:flutter/material.dart';
 
 class HomeLocation extends BeamLocation<BeamState> {
@@ -10,6 +11,7 @@ class HomeLocation extends BeamLocation<BeamState> {
     '/customer',
     '/customer/add',
     '/customer/details',
+    '/customer/summary',
   ];
 
   @override
@@ -37,6 +39,15 @@ class HomeLocation extends BeamLocation<BeamState> {
           key: ValueKey('details'),
           title: 'View',
           child: Customerdetails(),
+        ),
+      );
+    }
+    if (state.uri.pathSegments.contains('summary')) {
+      pages.add(
+        const BeamPage(
+          key: ValueKey('summary'),
+          title: 'Create Order',
+          child: Ordersummary(),
         ),
       );
     }

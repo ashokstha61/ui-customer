@@ -11,6 +11,8 @@ class CustomTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final TextEditingController? controller;
   final VoidCallback? onTap;
+  final bool enabled;
+  final FormFieldValidator<String>? validator;
 
   const CustomTextField({
     super.key,
@@ -23,6 +25,7 @@ class CustomTextField extends StatelessWidget {
     this.onTap,
     required this.labelText,
     required this.keyboardType,
+    this.enabled = true, this.validator, List? inputFormatters,
   });
 
   @override
@@ -33,7 +36,8 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         onTap: onTap,
-        readOnly: onTap != null,
+        enabled: enabled,
+        validator: validator,
         keyboardType: keyboardType,
         style: GoogleFonts.nunito(color: Colors.black, fontSize: 18),
         decoration: InputDecoration(
@@ -41,6 +45,7 @@ class CustomTextField extends StatelessWidget {
           fillColor: backgroundColor ?? Colors.white,
           hintText: hintText,
           hintStyle: GoogleFonts.nunito(),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: labelText,
           labelStyle: GoogleFonts.nunito(),
 

@@ -1,19 +1,18 @@
 import 'package:customer_ui/core/constant/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
-  final Widget? backIcon;
-  final VoidCallback? onPressBack;
+  final bool showBack;
   final String title;
-  final Widget? notification;
-
+  final int notificationCount;
   final VoidCallback? onPressedNotification;
+
   const CustomAppbar({
     super.key,
-    this.backIcon,
-    this.onPressBack,
+    this.showBack = true,
     required this.title,
-    this.notification,
+    this.notificationCount = 0,
     this.onPressedNotification,
   });
 
@@ -21,27 +20,80 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
+      backgroundColor: AppColor.appbackground,
+      centerTitle: true,
       title: Text(
         title,
-        style: const TextStyle(color: Colors.black, fontSize: 18),
+        style: GoogleFonts.nunito(
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+        ),
       ),
-      centerTitle: true,
-      backgroundColor: AppColor.buttonColor,
-      // elevation: 1,
-      leading: backIcon != null
-          ? IconButton(iconSize: 24, icon: backIcon!, onPressed: onPressBack)
+      leading: showBack
+          ? IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => Navigator.pop(context),
+            )
           : null,
       actions: [
-        if (notification != null)
-          IconButton(
-            iconSize: 24,
-            icon: notification!,
+        Padding(
+          padding: const EdgeInsets.only(right: 8),
+          child: NotificationIcon(
+            icon: const Icon(Icons.notifications_outlined),
+            count: notificationCount,
             onPressed: onPressedNotification,
           ),
+        ),
       ],
     );
   }
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+class NotificationIcon extends StatelessWidget {
+  final Widget icon;
+  final int count;
+  final VoidCallback? onPressed;
+
+  const NotificationIcon({
+    super.key,
+    required this.icon,
+    this.count = 0,
+    this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        IconButton(iconSize: 24, icon: icon, onPressed: onPressed),
+        if (count > 0)
+          Positioned(
+            top: 2,
+            right: 2,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+              decoration: BoxDecoration(
+                color: Colors.red[500],
+                shape: BoxShape.circle,
+              ),
+              constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
+              child: Text(
+                count > 99 ? '99+' : '$count',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+      ],
+    );
+  }
 }

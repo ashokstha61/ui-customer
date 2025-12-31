@@ -103,14 +103,11 @@ class _CustomerdetailsState extends State<Customerdetails> {
     final isActive = customerData['is_active'] as bool;
     return Scaffold(
       appBar: CustomAppbar(
-        backIcon: Image.asset('assets/images/backarrow.png'),
-        onPressBack: Beamer.of(context).beamBack,
         title: 'Customer Details',
-        notification: Image.asset('assets/images/bell.png'),
       ),
       backgroundColor: AppColor.backgroundColor,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Container(
           width: double.infinity,
           margin: const EdgeInsets.only(bottom: 12),

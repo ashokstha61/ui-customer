@@ -27,13 +27,13 @@ class _CustomerState extends ConsumerState<Customer> {
 
     return Scaffold(
       appBar: CustomAppbar(
-        backIcon: Image.asset('assets/images/backarrow.png'),
         title: 'Customer',
-        notification: Image.asset('assets/images/bell.png'),
+        showBack: false,
+        notificationCount: 52,
       ),
       backgroundColor: AppColor.backgroundColor,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 18),
+        padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
             SizedBox(height: 8),
@@ -94,19 +94,9 @@ class _CustomerState extends ConsumerState<Customer> {
         onPressed: () {
           showModalBottomSheet(
             context: context,
+            isScrollControlled: true,
             builder: (context) {
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: const Color(0xffF9F9F9),
-                ),
-
-                // color: const Color(0xffF9F9F9),
-                child: Padding(
-                  padding: EdgeInsets.all(8),
-                  child: ExtendedOnAdded(),
-                ),
-              );
+              return ExtendedOnAdded();
             },
           );
         },

@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:customer_ui/core/constant/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,8 +33,8 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       ),
       leading: showBack
           ? IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () => Navigator.pop(context),
+              icon: const Icon(Icons.keyboard_arrow_left),
+              onPressed: () => Beamer.of(context).beamBack(),
             )
           : null,
       actions: [

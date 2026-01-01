@@ -102,9 +102,7 @@ class _CustomerdetailsState extends State<Customerdetails> {
   Widget build(BuildContext context) {
     final isActive = customerData['is_active'] as bool;
     return Scaffold(
-      appBar: CustomAppbar(
-        title: 'Customer Details',
-      ),
+      appBar: CustomAppbar(title: 'Customer Details', notificationCount: 52),
       backgroundColor: AppColor.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),

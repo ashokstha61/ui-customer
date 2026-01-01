@@ -1,6 +1,7 @@
 import 'package:customer_ui/core/constant/customer_drop.dart';
 import 'package:customer_ui/core/constant/language.dart';
 import 'package:customer_ui/core/constant/payment.dart';
+import 'package:customer_ui/core/utils/phonenovalid.dart';
 import 'package:customer_ui/core/widgets/custom_button.dart';
 import 'package:customer_ui/core/widgets/customdropdown.dart';
 import 'package:customer_ui/core/widgets/customtextfield.dart';
@@ -63,15 +64,15 @@ class _ExtendedOnAddedState extends State<ExtendedOnAdded> {
             color: Colors.white,
             borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           ),
-          child: Column(
-            children: [
-              _header(context),
-              Expanded(
-                child: SingleChildScrollView(
-                  controller: scrollController,
-                  padding: const EdgeInsets.all(16),
-                  child: Form(
-                    key: _formKey,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                _header(context),
+                Expanded(
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    padding: const EdgeInsets.all(16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -91,6 +92,7 @@ class _ExtendedOnAddedState extends State<ExtendedOnAdded> {
                             'Customer Name',
                             'Enter full name',
                             _controllers['name']!,
+
                             validator: (value) {
                               if (value == null || value.trim().isEmpty) {
                                 return 'Customer name is required';
@@ -138,11 +140,8 @@ class _ExtendedOnAddedState extends State<ExtendedOnAdded> {
                               return null;
                             },
                             inputFormatters: [
-                              FilteringTextInputFormatter
-                                  .digitsOnly, // Only digits allowed
-                              LengthLimitingTextInputFormatter(
-                                10,
-                              ), // Max 10 digits
+                              FilteringTextInputFormatter.digitsOnly,
+                              LengthLimitingTextInputFormatter(10),
                             ],
                           ),
                           field(
@@ -163,7 +162,7 @@ class _ExtendedOnAddedState extends State<ExtendedOnAdded> {
                             },
                             inputFormatters: [
                               FilteringTextInputFormatter.digitsOnly,
-                              LengthLimitingTextInputFormatter(10),
+                              PhoneNumberFormatter(maxLength: 10),
                             ],
                           ),
                         ],
@@ -225,6 +224,9 @@ class _ExtendedOnAddedState extends State<ExtendedOnAdded> {
                               }
                               return null;
                             },
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(20),
+                            ],
                           ),
                           field(
                             'District',
@@ -239,6 +241,9 @@ class _ExtendedOnAddedState extends State<ExtendedOnAdded> {
                               }
                               return null;
                             },
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(20),
+                            ],
                           ),
                           field(
                             'Province',
@@ -253,6 +258,9 @@ class _ExtendedOnAddedState extends State<ExtendedOnAdded> {
                               }
                               return null;
                             },
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(20),
+                            ],
                           ),
                         ],
 
@@ -370,14 +378,30 @@ class _ExtendedOnAddedState extends State<ExtendedOnAdded> {
                               iconPath: 'assets/images/addcustomer.png',
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
-                                  // All validations passed
-                                  print(
-                                    'Form is valid. Proceed to save customer data.',
-                                  );
-                                  // Add your save logic here
-                                } else {
-                                  // Some fields are invalid
-                                  print('Form is invalid. Fix the errors.');
+                                  final customerData = {
+                                    'name': _controllers['name']!.text.trim(),
+                                    'email': _controllers['email']!.text.trim(),
+                                    'phone': _controllers['phone']!.text.trim(),
+                                    'address': _controllers['address']!.text
+                                        .trim(),
+                                    'ward': _controllers['ward']!.text.trim(),
+                                    'municipality':
+                                        _controllers['municipality']!.text
+                                            .trim(),
+                                    'district': _controllers['district']!.text
+                                        .trim(),
+                                    'province': _controllers['province']!.text
+                                        .trim(),
+                                    'citizenship': _controllers['citizenship']!
+                                        .text
+                                        .trim(),
+                                    'pan': _controllers['pan']!.text.trim(),
+                                    'payment': selectedPayment,
+                                    'language': selectedLanguage,
+                                    'category': selectedCategory,
+                                  };
+
+                                  debugPrint('Saving customer: $customerData');
                                 }
                               },
                             ),
@@ -388,8 +412,8 @@ class _ExtendedOnAddedState extends State<ExtendedOnAdded> {
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

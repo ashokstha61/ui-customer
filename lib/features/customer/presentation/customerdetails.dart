@@ -1,4 +1,3 @@
-import 'package:beamer/beamer.dart';
 import 'package:customer_ui/core/constant/app_color.dart';
 import 'package:customer_ui/core/constant/customer_drop.dart';
 import 'package:customer_ui/core/constant/language.dart';

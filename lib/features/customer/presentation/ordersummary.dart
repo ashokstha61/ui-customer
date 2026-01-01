@@ -1,6 +1,4 @@
-import 'package:beamer/beamer.dart';
 import 'package:customer_ui/core/widgets/custom_appbar.dart';
-import 'package:customer_ui/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class Ordersummary extends StatelessWidget {

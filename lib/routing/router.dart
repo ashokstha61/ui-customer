@@ -1,9 +1,9 @@
 import 'package:beamer/beamer.dart';
-import 'package:customer_ui/routing/accountlocation.dart';
+// import 'package:customer_ui/routing/accountlocation.dart';
 import 'package:customer_ui/routing/customerlocation.dart';
-import 'package:customer_ui/routing/homelocation.dart';
-import 'package:customer_ui/routing/productlocation.dart';
-import 'package:customer_ui/routing/tablocation.dart';
+// import 'package:customer_ui/routing/homelocation.dart';
+// import 'package:customer_ui/routing/productlocation.dart';
+// import 'package:customer_ui/routing/tablocation.dart';
 
 final routerDelegate = BeamerDelegate(
   initialPath: '/customer',

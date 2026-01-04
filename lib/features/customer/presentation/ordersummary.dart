@@ -1,4 +1,3 @@
-import 'package:beamer/beamer.dart';
 import 'package:customer_ui/core/constant/app_color.dart';
 import 'package:customer_ui/core/constant/productitem.dart';
 import 'package:customer_ui/core/constant/sizeconstant.dart';

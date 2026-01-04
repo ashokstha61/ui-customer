@@ -23,6 +23,9 @@ class MyApp extends StatelessWidget {
       ),
       routerDelegate: routerDelegate,
       routeInformationParser: BeamerParser(),
+      backButtonDispatcher: BeamerBackButtonDispatcher(
+        delegate: routerDelegate,
+      ),
     );
   }
 }

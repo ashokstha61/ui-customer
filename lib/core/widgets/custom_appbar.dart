@@ -39,7 +39,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
           : null,
       actions: [
         Padding(
-          padding: const EdgeInsets.only(right: 8),
+          padding: const EdgeInsets.only(right: 12),
           child: NotificationIcon(
             icon: const Icon(Icons.notifications_outlined),
             count: notificationCount,

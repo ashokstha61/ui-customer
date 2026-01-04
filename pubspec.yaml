@@ -37,8 +37,9 @@ dependencies:
   font_awesome_flutter: ^10.7.1
   google_fonts: ^6.2.1
   flutter_riverpod: ^2.5.1
-  beamer: ^1.5.6
+  beamer: ^1.7.0
   uuid: ^4.4.0
+  svg_flutter: ^0.0.1
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +82,12 @@ flutter:
     - assets/images/uparrow.png
     - assets/images/x-close.png
     - assets/images/profile.jpg
+    - assets/images/urbanshoe.png
+    - assets/images/voltshoe.png
+    - assets/images/shirt.png
+    - assets/images/sweater.png
+    - assets/images/delete.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

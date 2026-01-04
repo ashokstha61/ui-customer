@@ -5,7 +5,7 @@ import 'package:customer_ui/core/widgets/custom_button.dart';
 import 'package:customer_ui/core/widgets/customer_card.dart';
 import 'package:customer_ui/core/widgets/customtextfield.dart';
 import 'package:customer_ui/core/widgets/singlebutton.dart';
-import 'package:customer_ui/features/customer/presentation/card.dart';
+import 'package:customer_ui/features/customer/presentation/extended_on_added.dart';
 import 'package:customer_ui/provider/add_customer_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

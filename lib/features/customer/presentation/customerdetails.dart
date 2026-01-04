@@ -9,6 +9,7 @@ import 'package:customer_ui/core/widgets/customdropdown.dart';
 import 'package:customer_ui/core/widgets/customtextfield.dart';
 import 'package:customer_ui/features/customer/widget/displayrow.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 final Map<String, dynamic> customerData = {
   "uuid": "550e8400-e29b-41d4-a716-446655440000",
@@ -122,6 +123,9 @@ class _CustomerdetailsState extends State<Customerdetails> {
                         hintText: 'Enter Customer Name',
                         labelText: 'Customer Name',
                         keyboardType: TextInputType.text,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(30)
+                        ],
                       ),
                       const SizedBox(height: 12),
                       CustomTextField(
@@ -129,6 +133,9 @@ class _CustomerdetailsState extends State<Customerdetails> {
                         hintText: 'Enter email',
                         labelText: 'Email',
                         keyboardType: TextInputType.emailAddress,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(30)
+                        ],
                       ),
                       const SizedBox(height: 12),
                       CustomTextField(
@@ -136,6 +143,9 @@ class _CustomerdetailsState extends State<Customerdetails> {
                         hintText: 'Enter Customer Phone Number',
                         labelText: 'Customer Phone Number',
                         keyboardType: TextInputType.phone,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(10)
+                        ],
                       ),
                     ] else ...[
                       DisplayRowWidget(
@@ -178,6 +188,9 @@ class _CustomerdetailsState extends State<Customerdetails> {
                         hintText: 'Enter Address Line',
                         labelText: 'Address Line',
                         keyboardType: TextInputType.text,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(50)
+                        ],
                       ),
                       const SizedBox(height: 12),
                       CustomTextField(
@@ -185,6 +198,9 @@ class _CustomerdetailsState extends State<Customerdetails> {
                         hintText: 'Enter Ward Number',
                         labelText: 'Ward No',
                         keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(2)
+                        ],
                       ),
                       const SizedBox(height: 12),
                       CustomTextField(
@@ -192,6 +208,10 @@ class _CustomerdetailsState extends State<Customerdetails> {
                         hintText: 'Enter Municipality',
                         labelText: 'Municipality',
                         keyboardType: TextInputType.text,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
+                          LengthLimitingTextInputFormatter(30)
+                        ],
                       ),
                       const SizedBox(height: 12),
                       CustomTextField(
@@ -199,6 +219,10 @@ class _CustomerdetailsState extends State<Customerdetails> {
                         hintText: 'Enter District',
                         labelText: 'District',
                         keyboardType: TextInputType.text,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
+                          LengthLimitingTextInputFormatter(30)
+                        ],
                       ),
                       const SizedBox(height: 12),
                       CustomTextField(
@@ -206,6 +230,10 @@ class _CustomerdetailsState extends State<Customerdetails> {
                         hintText: 'Enter Province',
                         labelText: 'Province',
                         keyboardType: TextInputType.text,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
+                          LengthLimitingTextInputFormatter(30)
+                        ],
                       ),
                     ] else ...[
                       DisplayRowWidget(
